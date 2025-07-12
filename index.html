@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery of the Soul</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="lock-active">
+
+    <!-- 🔐 Lock Screen -->
+    <div id="lockScreen">
+      <div class="lock-container">
+        <img src="Designs/lockicon.png" class="lock-icon" alt="Lock" />
+        <h2>Site Locked</h2>
+        <p>Enter password to continue(Hint: Mera phone number: **77)</p>
+<div class="password-wrapper">
+  <input type="password" id="passwordInput" placeholder="Enter password" />
+  <button id="togglePassword" class="eye-toggle">🐵</button>
+</div>
+
+<div class="remember-me">
+  <input type="checkbox" id="rememberMe" />
+  <label for="rememberMe">Remember Me</label>
+</div>
+
+        
+      </div>
+    </div>
+
+    <!-- 🏠 Home Page -->
+    <div id="homePage" class="hidden">
+      <header>
+        <h1>The Gallery of the Soul</h1>
+        <nav>
+          <a href="#">Service</a>
+          <a href="#">About</a>
+          <a href="#">Price</a>
+          <a href="#">News</a>
+        </nav>
+      </header>
+
+      <!-- 💫 Hero Section -->
+      <section class="hero soul-hero">
+        <div class="emotional-glow"></div>
+        <div class="floating-icons">💔 😢 ❤️ 🌌 🧠 🕊️</div>
+        
+        <div class="glass emotion-card">
+          <h2 class="hero-title">The Gallery of the Soul</h2>
+          <p class="typewriter" id="typewriterText"></p>
+          <button id="getStartedBtn" class="soul-button">Begin the Journey</button>
+        </div>
+      </section>
+
+      <!-- 🎡 Carousel Section -->
+      <section id="carouselSection" class="hidden">
+        <h2 class="card-heading">Select a card to read</h2>
+        <div class="carousel-wrapper">
+          <div class="carousel">
+            <div class="carousel-inner" id="carouselInner">
+
+              <!-- 🔗 Clickable Tiles for Different Pages -->
+              <a href="pages/loneliness.html" class="tile" target="_blank">
+                <img src="images/lonliness.jpg" />
+                <span>Loneliness</span>
+              </a>
+              <a href="pages/love.html" class="tile" target="_blank">
+
+                <img src="images/love.jpg" />
+                <span>Love</span>
+              </a>
+              <a href="pages/fear.html" class="tile" target="_blank">
+                <img src="images/fear.png" />
+                <span>Fear</span>
+              </a>
+              <a href="pages/hope.html" class="tile" target="_blank">
+                <img src="images/hope.png" />
+                <span>Hope</span>
+              </a>
+              <a href="pages/regret.html" class="tile" target="_blank">
+                <img src="images/regret.png" />
+                <span>Regret</span>
+              </a>
+              <a href="pages/healing.html" class="tile" target="_blank">
+                <img src="images/healing.png" />
+                <span>Healing</span>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+        <p class="arrow-hint">Use arrow keys (← →) to choose between</p>
+      </section>
+    </div>
+
+    <!-- 🧠 Logic -->
+    <script src="script.js"></script>
+  </body>
+</html>

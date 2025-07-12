@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loneliness - Gallery of the Soul</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #f2f2f2;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .floating-emojis {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .floating-emojis span {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.07;
+      animation: float 15s infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.2;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(50px);
+        opacity: 0;
+      }
+    }
+
+    .pane {
+      position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(18px);
+      border-radius: 16px;
+      padding: 60px 40px;
+      max-width: 960px;
+      margin: 80px auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      color: #ffd700;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 2;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+.cursor-glow {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 10px #fff, 0 0 25px #ffd700, 0 0 40px #ffd700;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  animation: pulse 1.5s infinite;
+}
+.back-btn {
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  z-index: 999;
+  text-decoration: none;
+  animation: floaty-bounce 2.5s ease-in-out infinite;
+  transition: t
+}
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+    p:nth-child(n+2) { animation-delay: calc(0.2s * var(--i)); }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    ::selection {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-emojis">
+    <span style="left: 5%;">💔</span>
+    <span style="left: 20%;">😢</span>
+    <span style="left: 40%;">🕊️</span>
+    <span style="left: 60%;">😔</span>
+    <span style="left: 80%;">🌑</span>
+  </div>
+
+  <div class="pane">
+    <h1>Loneliness</h1>
+
+    <p style="--i:1;">
+      "No one understands me, no one thinks the way I think, but they want me to think their way."
+    </p>
+    <p style="--i:2;">
+      It’s exhausting — being you. Not because you’re not enough, but because people around you refuse to accept your enough-ness.
+      You try to be kind, you try to be calm, you try to stay quiet even when your mind is on fire. And yet, it feels like no matter what you do, you're always one step behind in their eyes.
+    </p>
+    <p style="--i:3;">
+      People say “I’m here for you,” but when you start to speak, they change the topic. They want to hear your story — but only if it's light, funny, or motivational. Not if it’s messy. Not if it's broken. Not if it’s real.
+    </p>
+    <p style="--i:4;">
+      You’ve mastered the art of faking smiles. You’ve laughed in rooms where your heart was crying. You’ve cheered others on while your own soul was collapsing. 
+      But what hurts the most is not the loneliness — it’s the silence you’ve learned to live with. The silence between what you feel and what you say. 
+    </p>
+    <p style="--i:5;">
+      You aren’t silent because you have nothing to say — you're silent because nobody listens the way you need. 
+      They judge. They interrupt. They compare. And eventually, they change the subject. So you shut down. Again.
+    </p>
+    <p style="--i:6;">
+      You look around and everyone seems okay. But inside, you wonder if anyone else carries this same weight. 
+      This weight of being "too much" for some and "never enough" for others. This weight of never truly belonging — not even in your own house, or your friend circle, or sometimes even in your own skin.
+    </p>
+    <p style="--i:7;">
+      You’re tired of explaining yourself. Tired of being called sensitive. Tired of feeling everything in a world that rewards numbness. 
+      You don’t want attention. You don’t even want advice. You just want someone to sit with you and say, “I don’t get it all, but I’m here. And I care.”
+    </p>
+    <p style="--i:8;">
+      But no one ever really says that.
+    </p>
+    <p style="--i:9;">
+      You walk through life like a ghost. Breathing, living, existing... but not really seen. Your mind constantly overthinks. 
+      Every conversation. Every reaction. Every silence. And still, people think you're "too quiet" or "too overdramatic."
+    </p>
+    <p style="--i:10;">
+      The truth? You’re not broken. You’re just carrying too much alone. 
+      Loneliness isn't just physical — it's emotional. It's spiritual. It's waking up every day with the hope someone will finally understand you, and going to bed every night with the pain that no one ever did.
+    </p>
+    <p style="--i:11;">
+      But here's something real — <strong>your thoughts matter</strong>. Your heart matters. Your emotions aren't a weakness — they’re proof that you care in a world that’s slowly forgetting how to feel.
+    </p>
+    <p style="--i:12; text-align:center; margin-top: 50px;">
+      You are not too much. You are just surrounded by people who never learned how to love deeply. <br/>
+      One day, the right soul will find you — and they’ll understand every word you never had to say. 🌌
+    </p>
+  </div>
+  <div class="cursor-glow" id="cursor"></div>
+<script>
+  const cursor = document.getElementById("cursor");
+
+  document.addEventListener("mousemove", (e) => {
+    cursor.style.top = `${e.clientY}px`;
+    cursor.style.left = `${e.clientX}px`;
+  });
+</script>
+<a href="../index.html" class="back-btn">⬅ Back</a>
+
+</body>
+</html>

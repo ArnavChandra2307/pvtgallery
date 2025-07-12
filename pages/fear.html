@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fear - Gallery of the Soul</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #16181e, #1e1f29);
+      background-size: 400% 400%;
+      animation: bgMove 20s ease infinite;
+      color: #eaeaea;
+      overflow-x: hidden;
+      padding: 0 20px;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .pane {
+      max-width: 900px;
+      margin: 100px auto;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      padding: 60px 50px;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 10;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ff6f61;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .text-content {
+      font-size: 1.2rem;
+      line-height: 2.1;
+      text-align: justify;
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+      gap: 0.25rem;
+    }
+
+    .letter {
+      display: inline-block;
+      opacity: 0;
+      white-space: pre;
+      animation: flyIn 0.7s forwards;
+    }
+
+    strong {
+      color: #FFD700;
+      font-weight: 500;
+    }
+
+    @keyframes flyIn {
+      to {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+    }
+
+    a.floating-btn {
+      position: fixed;
+      top: 25px;
+      left: 25px;
+      background: rgba(255, 255, 255, 0.07);
+      padding: 12px 20px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      z-index: 999;
+      animation: bounce 2s infinite;
+      transition: all 0.3s ease;
+    }
+
+    a.floating-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+  </style>
+</head>
+<body>
+
+<a href="../index.html" class="floating-btn">← Back</a>
+
+<div class="pane">
+  <h1>Fear</h1>
+  <div class="text-content" id="animatedText"></div>
+</div>
+
+<script>
+  const rawText = `I’m not afraid of someone yelling at me. Not afraid of punishment, not even criticism. That’s never been my fear. My fear is quieter, hidden — the kind that lives in the silence after a conversation, in the pause between two heartbeats.
+
+I fear hurting someone unintentionally. Not with actions, but with misunderstood intentions. The kind of pain that comes not from betrayal, but from a sentence taken the wrong way. A look misread. A moment missed.
+
+I fear being misunderstood — not because I need people to agree with me, but because I never want someone I care about to feel like I didn’t care enough to understand them. It breaks me when my words create walls instead of bridges.
+
+I’m scared of silence — not the peaceful kind, but the kind that grows heavy, where people stop talking not because they’re calm, but because they’ve given up trying to be heard. I’m scared of the silence that comes after “I’m fine” when I know they’re not.
+
+I fear being the reason someone cries when I was trying to make them smile. I fear being the reason someone walks away when I only wanted them to stay. I fear being too much, too little, or just not enough — all at once.
+
+I fear the weight of regret — the kind that shows up at night when everyone else is asleep, whispering, “Maybe you should’ve said it differently.” And even when I try to convince myself I meant well, my heart keeps replaying the moment I got it wrong.
+
+I fear losing people. Not because I can’t be alone, but because I don’t just let people in — I give them my quiet thoughts, my hidden fears, my purest love. And when they leave, it doesn’t just hurt… it feels like I’ve lost a piece of myself I’ll never get back.
+
+The truth is — I overthink not because I lack trust, but because I care too deeply. I replay every word I said, every moment I might’ve failed to show I care. Because if someone I love feels distant, my mind doesn’t rest until I know they’re okay.
+
+My fear isn’t loud. It doesn’t scream. It quietly aches in the background — like a soft echo in a hollow room. 
+
+I don’t fear being alone. I fear making someone else feel alone… because of me.`;
+
+  const highlightWords = [
+    'hurting someone unintentionally',
+    'being misunderstood',
+    'silence',
+    'the reason someone cries',
+    'regret',
+    'losing people',
+    'care too deeply',
+    'quietly aches',
+    'feel alone… because of me'
+  ];
+
+  const container = document.getElementById("animatedText");
+
+  function highlightText(text, phrases) {
+    for (const phrase of phrases) {
+      const regex = new RegExp(phrase, 'gi');
+      text = text.replace(regex, match => `<strong>${match}</strong>`);
+    }
+    return text;
+  }
+
+  const highlightedHTML = highlightText(rawText, highlightWords);
+  const tempContainer = document.createElement("div");
+  tempContainer.innerHTML = highlightedHTML;
+
+  let index = 0;
+
+  function animateNode(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const chars = node.textContent.split('');
+      chars.forEach(char => {
+        const span = document.createElement('span');
+        span.className = 'letter';
+        span.innerHTML = char === ' ' ? '&nbsp;' : char;
+        span.style.transform = `translate(${(Math.random() - 0.5) * 1000}px, ${(Math.random() - 0.5) * 1000}px)`;
+        span.style.animationDelay = `${index * 0.05}s`;
+        container.appendChild(span);
+        index++;
+      });
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const tag = node.tagName.toLowerCase();
+      const wrapper = document.createElement(tag);
+      if (tag === 'strong') wrapper.className = 'golden';
+      container.appendChild(wrapper);
+      node.childNodes.forEach(child => animateNode(child, wrapper));
+    }
+  }
+
+  tempContainer.childNodes.forEach(child => animateNode(child));
+</script>
+
+</body>
+</html>

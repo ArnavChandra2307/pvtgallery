@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Regret - Gallery of the Soul</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+    *, *::before, *::after {
+      margin:0; padding:0; box-sizing:border-box;
+    }
+
+    html, body {
+      height:100%;
+      overflow-x:hidden;
+    }
+
+    body {
+      font-family:'Poppins',sans-serif;
+      background: url('regret.jpeg') center/cover no-repeat fixed;
+      position:relative;
+      color:#eee;
+    }
+
+    body::before {
+      content:'';
+      position:absolute; inset:0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+      backdrop-filter:blur(8px);
+      z-index:0;
+      height: 1900px;
+      
+    }
+
+    .pane {
+      position:relative;
+      z-index:1;
+      max-width:800px;
+      margin:100px auto;
+      padding:40px;
+      background: rgba(0,0,0,0.3);
+      border:1px solid rgba(255,255,255,0.1);
+      backdrop-filter:blur(15px);
+      border-radius:12px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.7);
+    }
+
+    h1 {
+      text-align:center;
+      font-size:2.5rem;
+      margin-bottom:30px;
+      position:relative;
+    }
+
+    .glitch {
+      font-size:2.5rem;
+      font-weight:500;
+      color:#f55;
+      position:relative;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position:absolute; top:0; left:0;
+      width:100%; height:100%;
+      clip: rect(0,900px,0,0);
+    }
+
+    .glitch::before {
+      animation: glitch-anim-1 2s infinite linear;
+      color: #e33;
+      z-index:-1;
+    }
+
+    .glitch::after {
+      animation: glitch-anim-2 3s infinite linear;
+      color: #faa;
+      z-index:-2;
+    }
+    .cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background: #ff6bcb;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 15px #ff6bcb, 0 0 30px #ff6bcb;
+  z-index: 9999;
+  opacity: 0.8;
+  transform: translate(-50%, -50%);
+  animation: fadeout 1s forwards;
+}
+
+@keyframes fadeout {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+
+    @keyframes glitch-anim-1 {
+      0% { clip: rect(0,900px,20px,0); transform:translate(2px, -2px);}
+      20% { clip: rect(10px,900px,40px,0); transform:translate(-2px,2px);}
+      40% { clip: rect(30px,900px,60px,0); transform:translate(2px,2px);}
+      60% { clip: rect(20px,900px,50px,0); transform:translate(-2px,-2px);}
+      80% { clip: rect(40px,900px,80px,0); transform:translate(2px,-2px);}
+      100% { clip: rect(0,900px,20px,0); transform:translate(0,0);}
+    }
+
+    @keyframes glitch-anim-2 {
+      0% { clip: rect(20px,900px,60px,0); transform:translate(-3px, 3px);}
+      25% { clip: rect(40px,900px,80px,0); transform:translate(3px,-3px);}
+      50% { clip: rect(10px,900px,30px,0); transform:translate(-3px,-3px);}
+      75% { clip: rect(60px,900px,100px,0); transform:translate(3px,3px);}
+      100% { clip: rect(20px,900px,60px,0); transform:translate(0,0);}
+    }
+
+    .text {
+      font-size:1.1rem;
+      line-height:1.9;
+      letter-spacing:0.5px;
+      color:#ddd;
+      white-space:pre-wrap;
+    }
+
+    a.back {
+      position:fixed; top:20px; left:20px;
+      z-index:2;
+      background:rgba(0,0,0,0.5);
+      color:#fff;
+      padding:10px 15px;
+      border-radius:6px;
+      text-decoration:none;
+    }
+  </style>
+</head>
+<body>
+  <a href="../index.html" class="back">← Back</a>
+  <div class="pane">
+    <h1 class="glitch" data-text="Regret">Regret</h1>
+    <div class="text">
+I feel like a terrible person sometimes.  
+No matter how hard I try… I mess things up.  
+I try to do good — and somehow, it ends in something worse.  
+It’s like I’m wired to fail, like I’m destined to disappoint.
+
+I couldn’t make anyone happy…  
+Not the people I love, not even myself.
+
+I keep blaming myself.  
+Not just for what I did,  
+but for what I couldn’t do.  
+For the words I couldn’t say in time,  
+for the moments I didn’t save,  
+for the people I lost without meaning to.
+
+And the worst part?  
+I meant well. Always.  
+But good intentions don’t stop people from getting hurt.
+
+Sometimes I think — maybe I’m not made for love, or peace, or happiness.  
+Maybe I just break the things I touch.
+
+But still, deep down...  
+I want to believe that regret is not the end of my story.  
+That the pain I feel today  
+might build the strength I’ll need tomorrow.
+
+I want to believe that I can still grow —  
+even with all the scars.  
+That one day, I’ll look back  
+and be proud that I kept walking,  
+even when I hated every step.
+
+For now, I’ll let myself feel it.  
+The ache. The shame. The silence.
+
+But I won’t let regret define me forever.
+
+Not yet.
+    </div>
+  </div>
+  <script>
+  document.addEventListener('mousemove', (e) => {
+    const trail = document.createElement('div');
+    trail.className = 'cursor-trail';
+    trail.style.left = `${e.clientX}px`;
+    trail.style.top = `${e.clientY}px`;
+
+    document.body.appendChild(trail);
+
+    setTimeout(() => {
+      trail.remove();
+    }, 1000); // remove after fade
+  });
+</script>
+
+</body>
+</html>

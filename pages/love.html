@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Love - Gallery of the Soul</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+      background: url('../pages/lovebg.jpg') no-repeat center center/cover;
+      min-height: 100vh;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    .intro-text {
+      font-size: 1.05rem;
+      max-width: 700px;
+      text-align: center;
+      margin-bottom: 50px;
+      line-height: 1.8;
+      color: #eee;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+
+    .tiles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .tile {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 20px;
+      border-radius: 15px;
+      width: 230px;
+      height: 300px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.4s, box-shadow 0.4s;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .tile:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 30px rgba(0, 255, 255, 0.4);
+    }
+
+    .tile img {
+      width: 100%;
+      height: 180px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .tile span {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      display: block;
+    }
+
+    /* Pop-up message area */
+    .popup-box {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 850px;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+    }
+
+    .popup-box h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #ffd700;
+    }
+
+    .popup-box p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #f5f5f5;
+      white-space: pre-wrap;
+    }
+
+    @media screen and (max-width: 600px) {
+      .tile {
+        width: 90%;
+        height: auto;
+      }
+
+      .tile img {
+        height: 160px;
+      }
+
+      .popup-box {
+        padding: 20px;
+      }
+    }
+    .back-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 25px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  text-decoration: none;
+  color: #ffcc70;
+  font-weight: bold;
+  font-size: 1rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>Love - Gallery of the Soul 💖</h1>
+
+  <div class="intro-text">
+    Hmm so ?? sab koi aa gaye?? Means kuch toh shayad galat hua hai jo padhne ka mauka mila sabko ya sirf ek-do log ko...  
+    <br><br>
+    Main? Main kuch nahi keh sakta hu ab... mere andar kuch bacha hi nahi hai. Bas neeche apna tile click karo aur padh lo khud.  
+    <br><br>
+    Sorry... and Thank youuuuuu 🙏🏻
+  </div>
+
+  <!-- 🔲 Emotional Tiles -->
+  <div class="tiles">
+    <div class="tile" onclick="showMessage('Anokhi')">
+      <img src="../images/anokhi.jpg" alt="Anokhi" />
+      <span>Anokhi</span>
+    </div>
+    <div class="tile" onclick="showMessage('Mummy')">
+      <img src="../images/mummy.jpg" alt="Mummy" />
+      <span>Mummy</span>
+    </div>
+    <div class="tile" onclick="showMessage('Papa')">
+      <img src="../images/papa.webp" alt="Papa" />
+      <span>Papa</span>
+    </div>
+    <div class="tile" onclick="showMessage('Ishu Didi')">
+      <img src="../images/ishu.jpg" alt="Ishu" />
+      <span>Ishu Didi</span>
+    </div>
+  </div>
+
+  <div class="intro-text">
+    Sorry aap sab ko ye sab padhna pada — but ye woh hai jo maine 15 saal ki age tak mehsoos kiya tha... par kabhi keh nahi paya 💔
+  </div>
+
+  <!-- 💌 Pop-up Emotional Box -->
+  <div class="popup-box" id="messageBox">
+    <h2>Message for <span id="personName">Someone</span></h2>
+    <p id="messageContent">
+      Click on a name tile above to read the message from the heart...
+    </p>
+  </div>
+
+  <!-- 💻 Script -->
+  <script>
+    const messages = {
+      "Anokhi": `*Last updated message was on: 11th July 2025*
+      Hello jiii... Toh? Note use karne ka time aa gaya? Sorry ki ye bhejna pad raha hai aapko... but seriously jitna try kar paya mai kiya but sayad aap hi shi ho ki kuch galti ka kabhi kabhi sorry kaam nhi kara,
+
+Bass jab ye last moment hai toh phir kuch kuch baat karna tha mujhe aapse...
+
+Yaad hai aapko? Taskin, Aditi and all? Copy de diya toh gussa ? Baat kar liya toh Gussa? Hass diya ek baar toh gussa?
+
+Mai ye sab mai se ek bhi galti kar diya toh aap gussa ho jate the? aur yhi jab aap karte ho toh? Rajdeep ko copy de diye? Yaad hai subha subha use hass hass ke baat kar rahe the?? Mujhe bhi tab toh same react kar ke break-up ka bolna chahiye tha na?(Ye line ke liye pta hai mujhe aapka reply "Hnn thik jaoo ho jao") but mai toh nhi bola cuz trust hai mujhe and pta bhi hai ki friend ho bhi sakte ho aur nhi bhi kabhi aise cheat wala kaam toh nhi hi karoge aap but aapko toh aaj tak mere par acche se trust hi nhi hua na? Ki Aditi ko copy kaise de diye? Taskin ke sath chal ke kaise aa gaye? Taskin ko copy kaise de diye? Taskin ko copy kaise de diye likhne ke liye?
+
+galti mera hi hai.. I know but ab kya kare mai starting se ek baat nhi bol paya toh phir abhi kya hi bolunga cuz bol diya toh mai "change" ho jaunga na? Jab thora sa kuch bolna start karta hu toh phir "Drama band karna hota hai"? But drama nhi hota hai woh sab mujhe bhi baat sab ka bura lagta hai but kabhi bol nhi pta hu mai and jab mai thora thora bolne ka socha toh aap changed person wala tag de diye na?
+
+Aur Taskin and Aditi wala baat?
+Aap Woh Kanhaiya (Jo bhi spelling hota hai I don't Care) ko bhi apna banaya hua PDF dene wale the na? Publish karane ke liye? Terrace par hi na baat kar rahe the? Mai bhi gussa ho jau ki aap usko dene wale the? Ye toh bolna nhi ki nhi hum nhi dene wale the!! mai 2-3 baar pucha tha aapse ki use karwaoge ? Aap hamesha dekhte hai dekhte hai aur sochenge bolte rahe? Ye bhi nhi ki naaa use nhi tumse karwa lenge naa!! but aap hamesha dekhe hai dekhte hai karte rahe? 
+
+Ab dusri baat!!!
+Yaad hai jab ek baar koi reason se aap break ka bole the?? First Anniversary ke baad hi? Aur jab aapko laga ki mai "jhel raha hu"??
+
+mai kitna bola aapko? nhiii aisa nhi mera matlab as a responsibility tha ??? Rahul ek baar aapko bola ki nhiii jhel raha hai woh tumko but mai bola aisa nhi hai but aap kya reply diye uspar???
+
+"Rahul jaise itna accha bhai itna accha friend kabhi jhut bol hi nhi sakta..."? hai na?? means mai jhut bol raha hu??? straight forward mai toh yhi na bol rahe ho??
+
+Main baat pta hai kya hai??
+Aap kabhi mereko samjh hi nhi paye.... ek baar bhi nhi puche ho kabhi aap ki "Kaise ho??? Thik hai na??" lekin mai if thora sa kuch karne ka try karu toh "Nhiii change ho gaye ho... Drama maat karo" ??? And aaj (11th July 2025) aap kya bole?? Tum bhi aise hi chor doge humko kharab mood mai?? Mai kaise karu sab manage?? mai itna din tak aapke sath stand hua raha aapke side mai haar time.... Mujhe pata hai mai best nhi ho sakta but... try jarur kiya ki mere hote hue dusre ka jarurat nhi pade aapko... lekin ek baar bass ek baar jab mai thora low feel kar raha tha toh nhi apna best try kar paya toh aap?? ki ye behaviour nhi pasand aaya? Aapka bhi toh kitna baat tha jo mujhe pasand nhi aaya... but mai aaj tak ek word nhi bola tha... lekin aap again sab khatam karo nhi rehna hai tumhare sath and all karte rahe ho mai bass shii karne ka try kar raha hu,
+
+mai relation jaldi bannata nhi hu lekin jab bannata hu toh best deta hu usme aur jaldi tutne nhi deta hu....
+
+Ab abhi tak ke liye toh itna hi maybe jab ye last edit hua tab hi mujhe use naa karna pad raha ho isko... 
+
+Thanks for everything <3
+And yaa sorry jo bhi kiya hu mai jo pasand nhi aaya ho... but kya karu ab mere se nhi hota hai sab kuch ek sath manage. I am also much more tired of taking all those things again and again,
+And one more thing,
+I have always loved you no matter what happens between us, and will always even when we aren't in this relationship
+So goodbye.. and yaa take care aur zada rona nhi...<33
+Once again sorry ye sab padhna pad raha hai...
+- Arnav (Informally as a bandar to you :-) )
+ `,
+
+      "Mummy": `Namaste mummy... tab sab badhiya na? Mujhe maaf kar dena ki itna kharab insaan raha mai. Aaj tak aapki expectations match nahi kar paya... but sach mai try bahut kiya tha.
+
+Mujhe padhne ka maan tha, but kuch yaad nahi hota tha. Mera dimaag ye sab accept nahi karta tha mummy. Shayad isiliye sab kharab ho gaya.
+
+Aapko lagta tha mai laptop par galat cheeze dekhta hu... but woh sab nahi tha. Kabhi samjha nahi paya aapko. Bas maafi chaahta hu. 🙏🏻`,
+
+      "Papa": `Namaste papa... mujhe nahi pata kya bolun. Itne saalon tak aapka paisa barbaad kiya... kuch ban nahi paya. Bus bhoj ban gaya.
+
+Aapka paisa kahin aur invest karte toh shayad kuch accha hota.
+Bass ek baat khena tha mujhe... "Please ek do baar mera baat bhi sunn liya karte aap toh thora khushi hota mujhe... " 
+Phone lena hai? Nhiii ye wala nhi koi aur dekho ya hum koi trusted aadmi se baat karte hai..
+
+Matlab mai ??? mai jo bhi show kar raha tha options mai aapko woh galat tha kya? mujhe pta hai abhi mai wha hota aap kuch kuch bol ke mera mind divert kar dete lekin ab toh sorry woh ho nhi sakta
+Chalea chorea woh sab..
+bass ek baat aur:....
+
+Ishu par thoda time de dena — paisa sab kuch nahi hota, ghar ka sukoon bhi zaroori hota hai.
+
+Sorry... and thank you for giving me a good life.`,
+
+      "Ishu Didi": `Helloooo! Yup sabko namaste bola... par tereko nahi 😜  
+Moti! Ab toh koi nahi hai jo raat ko chillaye "specs nikaal do"  
+Miss karunga tujhe didi. Khush rehna, maze mein rehna.  
+Aur haan... kabhi koi choti choti cheez yaad aaye toh muskura lena 💖`
+    };
+
+    function showMessage(name) {
+      document.getElementById("personName").textContent = name;
+      document.getElementById("messageContent").textContent = messages[name] || "No message available.";
+    }
+  </script>
+<a href="../index.html" class="back-btn">⬅️ Back to Homepage</a>
+
+</body>
+</html>

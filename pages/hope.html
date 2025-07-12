@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hope - Gallery of the Soul</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1470&q=80') bottom center / cover no-repeat fixed;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100%;
+  color: #eee;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.6));
+  backdrop-filter: blur(10px);
+  z-index: 0;
+  height: 1500px;
+}
+
+
+    canvas.particles {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .pane {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 80px auto;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      padding: 60px 50px;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #87cefa;
+      text-align: center;
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px rgba(135, 206, 250, 0.5);
+    }
+
+    .text-content {
+      font-size: 1.2rem;
+      line-height: 2.1;
+      text-align: justify;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+
+    .letter {
+      display: inline-block;
+      opacity: 0;
+      white-space: pre;
+      animation: flyIn 0.7s forwards ease-out;
+    }
+
+    strong {
+      color: #ffd86b;
+      font-weight: 500;
+      text-shadow: 0 0 5px rgba(255, 216, 107, 0.4);
+    }
+
+    @keyframes flyIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    a.floating-btn {
+      position: fixed;
+      top: 25px;
+      left: 25px;
+      background: rgba(255, 255, 255, 0.07);
+      padding: 12px 20px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      z-index: 999;
+      animation: bounce 2s infinite;
+      transition: all 0.3s ease;
+    }
+
+    a.floating-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+  </style>
+</head>
+<body>
+
+<canvas class="particles"></canvas>
+<a href="../index.html" class="floating-btn">← Back</a>
+
+<div class="pane">
+  <h1>Hope</h1>
+  <div class="text-content" id="animatedText"></div>
+</div>
+
+<script>
+  const rawText = `Hope is not always bright and bold. Sometimes, it's quiet — barely noticeable, like the soft glow under a cracked door in a dark room.
+
+It doesn’t come with loud declarations or dramatic miracles. Most of the time, hope comes in whispers — in the voice that tells you to try again, even when you don’t know why you should.
+
+It shows up in the smallest moments: when your chest hurts from crying, but you still wake up the next day. When your hands tremble with exhaustion, but you choose to keep going. When nothing around you has changed, but something inside you refuses to give up.
+
+Hope is not the absence of pain. It’s the strength to carry your wounds with grace. It’s what allows your heart to beat gently, even when it’s been broken one too many times.
+
+You may not always feel it, but hope is always there — like a steady rhythm beneath the noise, waiting for you to listen.
+
+Sometimes, hope is just a breath — the decision to inhale despite the heaviness in your chest. Sometimes, it's in the way you talk kindly to yourself, when the world has only been cruel.
+
+It teaches you to believe in sunrises, even when all you've seen are nights. It reminds you that even though the rain hasn’t stopped, there’s a seed growing beneath the soil — silently preparing to bloom.
+
+You don’t need to shout to prove you have hope. The quiet fight you carry every single day — that is more than enough.
+
+And when you feel like you're sinking, remember: even at the bottom, hope dives deeper, searching for you, whispering softly — *"You're not done yet."*`;
+
+  const highlightWords = [
+    "hope comes in whispers",
+    "you choose to keep going",
+    "carry your wounds with grace",
+    "despite the heaviness",
+    "believe in sunrises",
+    "silently preparing to bloom",
+    "you're not done yet"
+  ];
+
+  const container = document.getElementById("animatedText");
+
+  function highlightText(text, phrases) {
+    for (const phrase of phrases) {
+      const regex = new RegExp(phrase, 'gi');
+      text = text.replace(regex, match => `<strong>${match}</strong>`);
+    }
+    return text;
+  }
+
+  const highlightedHTML = highlightText(rawText, highlightWords);
+  const tempContainer = document.createElement("div");
+  tempContainer.innerHTML = highlightedHTML;
+
+  let index = 0;
+
+  function animateNode(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const chars = node.textContent.split('');
+      chars.forEach(char => {
+        const span = document.createElement('span');
+        span.className = 'letter';
+        span.innerHTML = char === ' ' ? '&nbsp;' : char;
+        span.style.animationDelay = `${index * 0.012}s`;
+        container.appendChild(span);
+        index++;
+      });
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const tag = node.tagName.toLowerCase();
+      const wrapper = document.createElement(tag);
+      container.appendChild(wrapper);
+      node.childNodes.forEach(child => animateNode(child));
+    }
+  }
+
+  tempContainer.childNodes.forEach(child => animateNode(child));
+
+  // particle bubbles
+  const canvas = document.querySelector('.particles');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+
+  function resizeCanvas() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  const bubbles = Array.from({ length: 70 }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    r: Math.random() * 2 + 1,
+    vy: -(Math.random() * 0.5 + 0.2)
+  }));
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, w, h);
+    bubbles.forEach(b => {
+      b.y += b.vy;
+      if (b.y < -5) b.y = h + 5;
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,0.15)';
+      ctx.fill();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+
+  animateParticles();
+</script>
+
+</body>
+</html>
